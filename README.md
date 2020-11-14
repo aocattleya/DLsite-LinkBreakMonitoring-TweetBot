@@ -5,11 +5,10 @@
 
 
 
-このTwitterアカウントの内部で動いているプログラムコードです。  
-This is the program code running inside this Twitter account.
-
-一部機能やkeyなどの記述は省略しています。  
-Some functions and keys are omitted.
+<p align="center">
+  このTwitterアカウントの内部で動いているプログラムコードです。<br>
+  This is the program code running inside this Twitter account.
+</p>
 
 ## 🐦 機能
 
@@ -17,7 +16,10 @@ Some functions and keys are omitted.
 Monitor and notify DLsite of broken adoption links as a reply tweet.
 
 ・東京の今日と明日の天気予報を監視してリプライツイートとして通知  
-Monitor today's and tomorrow's weather forecast for Tokyo and be notified as a reply tweet
+Monitor today's and tomorrow's weather forecast for Tokyo and be notified as a reply tweet.
+
+一部機能やkeyなどの記述は省略しています。  
+Some functions and keys are omitted.
 
 ## ⚠️ 使う人へ
 

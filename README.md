@@ -1,0 +1,2 @@
+# DLsite-LinkBreakMonitoring-TweetBot
+DLsiteの採用リンク切れを監視して通知

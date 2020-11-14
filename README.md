@@ -13,7 +13,8 @@
 ・DLsiteの採用リンク切れを監視してリプライツイートとして通知  
 ・東京の今日と明日の天気予報を監視してリプライツイートとして通知  
 
-一部機能やkeyなどの記述は省略しています。
+一部機能とkeyなどの記述は省略しています。  
+このスクリプトをHerokuから毎朝自動実行させています。
 
 <p align="center">
   <img width="500" alt="DLsite aocattleya" src="https://user-images.githubusercontent.com/39142850/99150377-8704e080-26d7-11eb-8da9-f2f6a58a65a9.png">

@@ -5,26 +5,33 @@
 
 
 
-<p align="center">
-  このTwitterアカウントの内部で動いているプログラムコードです。<br>
-  This is the program code running inside this Twitter account.
-</p>
+<br>
+<p align="center">このTwitterアカウントの内部で動いているプログラムコードです。</p>
 
 ## 🐦 機能
 
 ・DLsiteの採用リンク切れを監視してリプライツイートとして通知  
-Monitor and notify DLsite of broken adoption links as a reply tweet.
-
 ・東京の今日と明日の天気予報を監視してリプライツイートとして通知  
-Monitor today's and tomorrow's weather forecast for Tokyo and be notified as a reply tweet.
 
-一部機能やkeyなどの記述は省略しています。  
+一部機能やkeyなどの記述は省略しています。<br><br>
+
+
+### ⚠️ 使う人へ
+
+スクレイピングと自動ツイートを組み合わせた実装の参考コードです。
+
+何度も実行するとDLsiteへの負荷となるので注意してください。<br><br>
+
+## 🌐 English
+
+This is the program code running inside this Twitter account.
+
+・Monitor and notify DLsite of broken adoption links as a reply tweet.  
+・Monitor today's and tomorrow's weather forecast for Tokyo and be notified as a reply tweet.
+
 Some functions and keys are omitted.
 
-## ⚠️ 使う人へ
+### ⚠️ caution
 
-スクレイピングと自動ツイートを組み合わせた実装の参考コードです。  
 Here's the reference code for a combined implementation of scraping and auto-tweeting.
-
-何度も実行するとDLsiteへの負荷となるので注意してください。  
 Be careful not to run it too many times as it will put a load on the site.

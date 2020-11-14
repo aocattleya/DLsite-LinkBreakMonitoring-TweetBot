@@ -1,0 +1,7 @@
+beautifulsoup4==4.8.2
+pi==0.1.2
+python-dotenv==0.15.0
+requests==2.23.0
+soupsieve==2.0
+twitter==1.18.0
+urllib3==1.25.8

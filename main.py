@@ -36,6 +36,8 @@ def main():
                     locale = '（中国）'
                 elif cookie_locale['locale'] == 'zh-tw':
                     locale = '（台湾）'
+                elif cookie_locale['locale'] == 'ko-kr':
+                    locale = '（韓国）'
                 elif cookie_locale['locale'] == 'en-us':
                     locale = '（英語）'
                 # URL
@@ -82,26 +84,13 @@ def main():
         # 明日の天気
         tenki_tomorrow = soup.select_one('#main > div.forecastCity > table > tr > td + td > div > p.pict')
 
-
         '''-----------
         ツイート用の日付
         -----------'''
         date = datetime.datetime.now()
-        # もっといい方法多分ある
-        if datetime.date.today().weekday() == 0:
-            youbi = '（月）'
-        elif datetime.date.today().weekday() == 1:
-            youbi = '（火）'
-        elif datetime.date.today().weekday() == 2:
-            youbi = '（水）'
-        elif datetime.date.today().weekday() == 3:
-            youbi = '（木）'
-        elif datetime.date.today().weekday() == 4:
-            youbi = '（金）'
-        elif datetime.date.today().weekday() == 5:
-            youbi = '（土）'
-        elif datetime.date.today().weekday() == 6:
-            youbi = '（日）'
+        week_list = ['月', '火', '水', '木', '金', '土', '日']
+        now_week = datetime.datetime.now().weekday()
+        youbi = '(' + week_list[now_week] + ')'
         now = str(date.month) + '月' + str(date.day) + '日' + youbi + str(date.hour) + '時' + str(date.minute) + '分'
 
         '''------

@@ -88,11 +88,14 @@ def main():
             lang = ', '.join(set(error_lang))
             t = Twitter(auth=OAuth(config.TW_TOKEN, config.TW_TOKEN_SECRET, config.TW_CONSUMER_KEY, config.TW_CONSUMER_SECRET))
             msg = '採用リンクが切れています。 @aocattleya \n\n■ タイトル\n' + title + '\n■ 言語\n' + lang
-            print(msg)
-            print(len(msg))
             if len(msg) > 140:
                 msg = '※注意！ @aocattleya \n' + str(count) + '件の採用リンクが切れています。（文字制限のため省略しています。）\n' + now
             t.statuses.update(status=msg)
+            # 天気ツイートも追従して呟く
+            time.sleep(10)
+            msg = '@aocattleya \n今日の天気は' + tenki_today.text + '\n' + '明日の天気は' + tenki_tomorrow.text + 'です。'
+            t.statuses.update(status=msg)
+
         else:
             t = Twitter(auth=OAuth(config.TW_TOKEN, config.TW_TOKEN_SECRET, config.TW_CONSUMER_KEY, config.TW_CONSUMER_SECRET))
             msg = '@aocattleya \n本日の全てのチェックの結果、問題は無いです。\n' + now + '\n\n今日の天気は' + tenki_today.text + '\n' + '明日の天気は' + tenki_tomorrow.text + 'です。'

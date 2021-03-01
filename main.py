@@ -71,8 +71,31 @@ def main():
 
         # 今日の天気
         tenki_today = soup.select_one('#main > div.forecastCity > table > tr > td > div > p.pict')
+        tenki_today = tenki_today.text
+        tenki_today = tenki_today.replace('\n', '')
+        tenki_today = tenki_today.replace('\r', '')
+
         # 明日の天気
         tenki_tomorrow = soup.select_one('#main > div.forecastCity > table > tr > td + td > div > p.pict')
+        tenki_tomorrow = tenki_tomorrow.text
+        tenki_tomorrow = tenki_tomorrow.replace('\n', '')
+        tenki_tomorrow = tenki_tomorrow.replace('\r', '')
+
+        ##################################
+        #  休日までの日付と、その祝日
+        ##################################
+        holidays_url = "https://holidays-jp.github.io/api/v1/date.json"
+        res = requests.get(holidays_url)
+        holidays = json.loads(res.text)
+        today = datetime.datetime.strptime(str(datetime.date.today()), "%Y-%m-%d").date()
+        for k, v in holidays.items():
+            holiday = datetime.datetime.strptime(k, "%Y-%m-%d").date()
+            if today <= holiday:
+                near_holiday_date = holiday
+                near_holiday_value = v
+                break
+        diff_date = near_holiday_date - today
+        diff_date = str(diff_date.days)
 
         ##################################
         #  ツイート
@@ -89,16 +112,17 @@ def main():
             t = Twitter(auth=OAuth(config.TW_TOKEN, config.TW_TOKEN_SECRET, config.TW_CONSUMER_KEY, config.TW_CONSUMER_SECRET))
             msg = '採用リンクが切れています。 @aocattleya \n\n■ タイトル\n' + title + '\n■ 言語\n' + lang
             if len(msg) > 140:
+                # 文字数オーバーの場合は上書き
                 msg = '※注意！ @aocattleya \n' + str(count) + '件の採用リンクが切れています。（文字制限のため省略しています。）\n' + now
             t.statuses.update(status=msg)
             # 天気ツイートも追従して呟く
             time.sleep(10)
-            msg = '@aocattleya \n今日の天気は' + tenki_today.text + '\n' + '明日の天気は' + tenki_tomorrow.text + 'です。'
+            msg = '@aocattleya \n今日の天気は' + tenki_today + '\n' + '明日の天気は' + tenki_tomorrow + '\n' + '次の祝日（' + near_holiday_value + '）までは' + diff_date + '日です'
             t.statuses.update(status=msg)
 
         else:
             t = Twitter(auth=OAuth(config.TW_TOKEN, config.TW_TOKEN_SECRET, config.TW_CONSUMER_KEY, config.TW_CONSUMER_SECRET))
-            msg = '@aocattleya \n本日の全てのチェックの結果、問題は無いです。\n' + now + '\n\n今日の天気は' + tenki_today.text + '\n' + '明日の天気は' + tenki_tomorrow.text + 'です。'
+            msg = '@aocattleya \n本日の全てのチェックの結果、問題は無いです。\n' + now + '\n\n今日の天気は' + tenki_today + '\n' + '明日の天気は' + tenki_tomorrow + '\n' + '次の祝日（' + near_holiday_value + '）までは' + diff_date + '日です'
             t.statuses.update(status=msg)
     except Exception as e:
         ##################################
